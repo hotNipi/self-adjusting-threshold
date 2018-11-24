@@ -1,0 +1,176 @@
+<script type="text/javascript">
+    RED.nodes.registerType('self-adjusting-threshold', {
+        category: 'function',
+        color: '#80dfff',
+        defaults: {
+            name: {
+                value: ""
+            },
+            payloadtype: {
+                value: "literal"
+            },
+            invert: {
+                value: false
+            },
+            max: {
+                value: 80,
+                validate: function(v) {
+                    if (isNaN(v)) {
+                        return false;
+                    }
+                    if (v < 0) {
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            head: {
+                value: 15,
+                validate: function(v) {
+                    if (isNaN(v)) {
+                        return false;
+                    }
+                    if (v < 0) {
+                        return false;
+                    }
+                    if (v > 25) {
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            period: {
+                value: 12,
+                validate: function(v) {
+                    if (isNaN(v)) {
+                        return false;
+                    }
+                    if (v < 1) {
+                        return false;
+                    }
+                    if (v > 48) {
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            interval: {
+                value: 1,
+                validate: function(v) {
+                    if (isNaN(v)) {
+                        return false;
+                    }
+                    if (v < 0) {
+                        return false;
+                    }
+                    if (v > 15) {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+
+        },
+        inputs: 1,
+        outputs: 2,
+        icon: "function.png",
+        paletteLabel: "threshold",
+        inputLabels: "",
+        outputLabels: ["setpoint(s)", "threshold"],
+        label: function() {
+            return this.name || "threshold";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="self-adjusting-threshold">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-period"><i class="fa fa-wrench"></i> Period</label>
+        <input type="text" id="node-input-period" placeholder="1 - 48">
+        <p>Time period for average calculation in hours.
+    </div>
+    <div class="form-row">
+        <label for="node-input-head"><i class="fa fa-wrench"></i> Overhead</label>
+        <input type="text" id="node-input-head" placeholder="0 - 25">
+        <p>Threshold overhead percentage.
+    </div>
+    <div class="form-row">
+        <label for="node-input-interval"><i class="fa fa-wrench"></i> Interval</label>
+        <input type="text" id="node-input-interval" placeholder="0 - 15">
+        <p>Minimum delay between threshold messages in minutes to prevent osciliation .
+    </div>
+    <div class="form-row">
+        <label for="node-input-max"><i class="fa fa-wrench"></i> Max</label>
+        <input type="text" id="node-input-max" placeholder="80">
+        <p>Threshold upper limit.
+    </div>
+    <div class="form-row">
+        <label for="node-input-payloadtype"><i class="fa fa-wrench"></i> Payload type</label>
+        <select type="text" id="node-input-payloadtype" style="display: inline-block; vertical-align: top;">
+            <option value="literal">literal</option>
+            <option value="boolean">boolean</option>
+            <option value="numeric">numeric</option>
+        </select>
+        <p>Type of the payload for threshold msg
+            <p>literal - ON/OFF, boolean - true/false, numeric - 1/0
+    </div>
+    <div class="form-row" align=left>
+        <label for="node-input-invert"><i class="fa fa-random"></i> Invert payload</label>
+        <div>&nbsp;&nbsp;<input type="checkbox" id="node-input-invert" style="display:inline-block; width:20px; vertical-align:baseline;">&nbsp;Invert payload</div>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="self-adjusting-threshold">
+    <p>Self adjusting threshold to control humidity in multiple zones with exhoust ventilator</p>
+    <h3>Inputs</h3>
+        <dl class="message-properties">
+            <dt>payload
+                <span class="property-type">number</span>
+            </dt>
+            <dd> measured humidity Input is validated to be a number between 0 and 100</dd>
+            <dt class="optional">topic <span class="property-type">string</span></dt>
+            <dd> Idntifier for zone. Required if used for multiple zones</dd>        
+        </dl>
+        <dl class="message-properties">
+            <dt>payload 
+                <span class="property-type">string</span>
+            </dt>           
+            <dt>
+                <dd>use <code>"clear"</code> to whipe collected data</dd>
+                <dd>use <code>"status"</code> to to ask current conditions.
+                    Message is routed to first output.
+                </dd>
+            </dt>            
+        </dl>
+
+    <h3>Outputs</h3>
+    <ol class="node-ports">
+        <li>Threshold value
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">number</span></dt>
+                <dd>Threshold value of zone. Calculated hourly, emitted if changed</dd>
+                <dt>topic <span class="property-type">string</span></dt>
+                <dd>Idntifier for zone.</dd>
+            </dl>
+        </li>
+        <li>Control output
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">number|string|boolean</span></dt>
+                <dd>Calculated state for device (ventilator). Payload type by choosed option. Calculated on 
+                    every input. Emitted if changed. 
+                </dd>
+            </dl>
+        </li>
+        
+    </ol>
+    <h3>Details</h3>
+    <p>Working principle</p>
+    <p>State considered to be <b>over</b> the limit if humidity value of <b>any</b> of zones is over it's threshold.
+    <p>State considered to be <b>under</b> the limit if humidity values of <b>all</b> the zones are under the threshold. 
+    <p>Output can be configured to emit opposite value.</p>    
+    
+</script>
