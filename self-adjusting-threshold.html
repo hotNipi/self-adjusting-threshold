@@ -133,7 +133,7 @@
             </dt>
             <dd> measured humidity Input is validated to be a number between 0 and 100</dd>
             <dt class="optional">topic <span class="property-type">string</span></dt>
-            <dd> Idntifier for zone. Required if used for multiple zones</dd>        
+            <dd> Identifier for zone. Required if node used for multiple zones</dd>        
         </dl>
         <dl class="message-properties">
             <dt>payload 
@@ -171,7 +171,8 @@
     <p>Working principle</p>
     <p>State considered to be <b>over</b> the limit if humidity value of <b>any</b> of zones is over it's threshold.
     <p>State considered to be <b>under</b> the limit if humidity values of <b>all</b> the zones are under the threshold. 
-    <p>Output can be configured to emit opposite value.</p>   
-     
+    <p>Output can be configured to emit opposite value.</p>
+    <p>For best results, input should be given about with 1 minute interval per zone and Period should be configured as long as reasonable. 
+        
     
 </script>
