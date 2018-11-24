@@ -1,4 +1,6 @@
 # self-adjusting-threshold
-Self adjusting humidity controller for multiple zones with single exhaust vent
+Node-RED node
 
-Targeted to control slowly changing proccess.
+Self adjusting humidity controller for multiple zones with single exhaust ventilator.
+
+Targeted to control **slowly changing proccess**.
