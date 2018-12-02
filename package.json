@@ -1,7 +1,7 @@
 {
     "name": "node-red-contrib-self-adjusting-threshold",
     "version": "0.1.0",
-    "description": "Self adjusting threshold to control humidity in multiple zones with single exhoust ventilator",
+    "description": "Self adjusting threshold to control humidity in multiple zones with single exhaust ventilator",
     "main": "self-adjusting-threshold.js",
     "node-red": {
         "nodes": {
