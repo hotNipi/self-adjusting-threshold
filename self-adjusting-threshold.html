@@ -125,7 +125,7 @@
 </script>
 
 <script type="text/x-red" data-help-name="self-adjusting-threshold">
-    <p>Self adjusting threshold to control humidity in multiple zones with exhoust ventilator</p>
+    <p>Self adjusting threshold to control humidity in multiple zones with single exhoust ventilator</p>
     <h3>Inputs</h3>
         <dl class="message-properties">
             <dt>payload
@@ -152,7 +152,7 @@
         <li>Threshold value
             <dl class="message-properties">
                 <dt>payload <span class="property-type">number</span></dt>
-                <dd>Threshold value of zone. Calculated hourly, emitted if changed</dd>
+                <dd>Threshold value of zone.Calculated hourly, emitted if changed</dd>
                 <dt>topic <span class="property-type">string</span></dt>
                 <dd>Identifier for zone.</dd>
             </dl>
@@ -169,6 +169,12 @@
     </ol>
     <h3>Details</h3>
     <p>Working principle</p>
+    <p>This node is dedicated to control single exhoust ventilator. If that ventilator takes care of multiple zones
+        and zones have their own humidity sensors installed, zones can have different thresholds.
+    </p>
+    <p>Threshold for every zone adjusted hourly. New value is calculated based on long term storage of collected
+        humidity values per every zone.
+    </p>    
     <p>State considered to be <b>over</b> the limit if humidity value of <b>any</b> of zones is over it's threshold.
     <p>State considered to be <b>under</b> the limit if humidity values of <b>all</b> the zones are under the threshold. 
     <p>Output can be configured to emit opposite value.</p>

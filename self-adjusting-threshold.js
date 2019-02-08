@@ -77,7 +77,7 @@ module.exports = function(RED) {
                 if(target.lock === true && target.history.length === node.minperiod){
                     target.lock = false;
                 }
-                if (target.history.length > node.period) {
+                while (target.history.length > node.period) {
                     target.history.shift();
                 }
             }
