@@ -8,6 +8,7 @@
             "self-adjusting-threshold": "self-adjusting-threshold.js"
         }
     },
+    "keywords": [ "node-red" ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
