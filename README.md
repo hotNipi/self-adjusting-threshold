@@ -8,12 +8,13 @@ Self adjusting threshold controller for single exhaust ventilator to react in ra
 As overall environment conditions change seasonally and change of outside weather affects indoor conditions, the setpoint of exhoust ventilator may needs to be corrected. This correction mechanism is automated with this node. 
 
 ## How
-Self adjusting calculation bases on relatively long term storage of input values. 
+Self adjusting calculation bases on relatively long term storage of input values.
 Node works only for input values in between 0 ... 100  
-If used for multiple zones, the msg.topic per zone is mandatory. 
+If used for **multiple zones**, the **msg.topic** per zone is mandatory. 
 Expected input is humidity level of one or more zones with rate about once in minute.
-On every input the state is calculated and if new state is moved over the threshold the output is fired. 
-The output of node is the state of ventilator in boolean manner. Output type is configurable. ON/OFF, true/false or 1/0 (can be reversed)
+On every input the state is calculated and if new state is found at the other side of the threshold the output is fired. 
+Node has single point threshold value (per zone). There is no hysteresis to set or to expect. Oscillation is avoided by timed control of output. 
+The output of node is the state of ventilator in boolean manner. Output type is configurable. ON/OFF, true/false or 1/0 (output can be reversed)
 
 ## Good to know
 This node uses context storage. If you are using file based presistable context option of Node-RED, the sate data will survie the restarts of system and there will be no unexpected behaviors. 
