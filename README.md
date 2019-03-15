@@ -1,5 +1,5 @@
 # self-adjusting-threshold
-[Node-RED](https://nodered.org/) contrib node
+[Node-RED](https://nodered.org/) contrib node for (home) automation. Humidity level controller for multiple zones with single exhoust ventilator
 
 ## What
 Self adjusting threshold controller for single exhaust ventilator to react in rapid change of humidity in wet rooms. Multiple zones supported.
