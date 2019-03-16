@@ -9,8 +9,15 @@
         }
     },
     "keywords": [
-        "node-red"
+        "node-red",
+        "humidity",
+        "threshold",
+        "automation"
     ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/hotNipi/self-adjusting-threshold.git"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
