@@ -1,5 +1,6 @@
 # self-adjusting-threshold
 [![NPM version][npm-image]][npm-url]
+
 [npm-image]: http://img.shields.io/npm/v/node-red-contrib-self-adjusting-threshold.svg
 [npm-url]: https://npmjs.org/package/node-red-contrib-self-adjusting-threshold
 
