@@ -20,6 +20,9 @@ On every input the state is calculated and if new state is found at the other si
 Node has single point threshold value (per zone). There is no hysteresis to set or to expect. Oscillation is avoided by timed control of output. 
 The output of node is the state of ventilator in boolean manner. Output type is configurable. ON/OFF, true/false or 1/0 (output can be reversed)
 
+## Example flow
+[![setup.PNG](img/setup.PNG)]
+
 ## Good to know
 This node uses context storage. If you are using file based presistable context option of Node-RED, the sate data will survie the restarts of system and there will be no unexpected behaviors. 
 
