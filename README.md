@@ -1,10 +1,11 @@
 # self-adjusting-threshold
 [![NPM version][npm-image]][npm-url]
+[![CodeFactor](https://www.codefactor.io/repository/github/hotnipi/self-adjusting-threshold/badge)](https://www.codefactor.io/repository/github/hotnipi/self-adjusting-threshold)
 
 [npm-image]: http://img.shields.io/npm/v/node-red-contrib-self-adjusting-threshold.svg
 [npm-url]: https://npmjs.org/package/node-red-contrib-self-adjusting-threshold
 
-[![CodeFactor](https://www.codefactor.io/repository/github/hotnipi/self-adjusting-threshold/badge)](https://www.codefactor.io/repository/github/hotnipi/self-adjusting-threshold)
+
 
 [Node-RED](https://nodered.org/) contrib node for (home) automation. Humidity level controller for multiple zones with single exhoust ventilator
 
