@@ -1,5 +1,5 @@
 # self-adjusting-threshold
-![Platform Node-RED](http://b.repl.ca/v1/Platform-Node--RED-red.png)
+[![Platform Node-RED](http://b.repl.ca/v1/Platform-Node--RED-red.png)](https://nodered.org/)
 [![NPM version][npm-image]][npm-url]
 [![CodeFactor](https://www.codefactor.io/repository/github/hotnipi/self-adjusting-threshold/badge)](https://www.codefactor.io/repository/github/hotnipi/self-adjusting-threshold)
 
