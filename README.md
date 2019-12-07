@@ -29,6 +29,9 @@ The output of node is the state of ventilator in boolean manner. Output type is 
 ![setup.JPG](img/setup.JPG)
 
 ## Good to know
+This node is prepared to Node-RED post 1.0 input signature (done) in backward compatible manner.
+The one can use the <code>complete</code> node to follow message flow in this node.
+
 This node uses context storage. If you are using file based presistable context option of Node-RED, the sate data will survie the restarts of system and there will be no unexpected behaviors. 
 
 This node is targeted to control humidity change. This is **slowly changing proccess**. Do not expect correct behavior if system has been running less than 12 hours (if default settings applied)

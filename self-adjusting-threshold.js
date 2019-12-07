@@ -237,17 +237,23 @@ module.exports = function(RED) {
 
         updateStatus();
 
-        node.on('input', function(msg) {
-
+        this.on('input', function(msg,send,done) {
+            send = send || function() { node.send.apply(node,arguments) }
             if (msg.hasOwnProperty('payload')) {
                 if (msg.payload === "clear") {
                     clear();
+                    if(done){
+                        done()
+                    }
                     return;
                 }
                 if(msg.payload === 'status'){
                     var m = getStatusMessage();
                     if(m !== null){
-                        node.send([m, null]);
+                        send([m, null]);
+                    }
+                    if(done){
+                        done()
                     }
                     return;
                 }
@@ -286,10 +292,23 @@ module.exports = function(RED) {
                     }
 
                     if (setpointMessage === null && thresholdMessage === null) {
+                        if(done){
+                            done()
+                        }
                         return;
                     }
                     updateStatus();
-                    node.send([setpointMessage, thresholdMessage]);
+                    send([setpointMessage, thresholdMessage]);
+                    if(done){
+                        done()
+                    }
+                }
+                else{
+                    if (done) {                       
+                       done({"ERROR":"Input type error"})
+                    }else {
+                       node.error('Input error.', msg);
+                   }
                 }
             }
 
