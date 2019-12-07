@@ -225,7 +225,7 @@ module.exports = function(RED) {
 
         function updateStatus() {
             if (node.lastmove === "") {
-                node.status({});
+                node.status({fill: "grey", shape: "ring", text:"not enough data"});
             } else {
                 var sh = node.lastmove === "under" ? "ring" : "dot";
                 node.status({ fill: "blue", shape: sh, text: node.lastmove });
@@ -305,7 +305,7 @@ module.exports = function(RED) {
                 }
                 else{
                     if (done) {                       
-                       done({"ERROR":"Input type error"})
+                       done(new Error("Input type error"))
                     }else {
                        node.error('Input error.', msg);
                    }
